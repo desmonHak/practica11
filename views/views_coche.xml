@@ -1,22 +1,29 @@
 <odoo>
 
-    <!-- TREE -->
+    <!-- ============================================ -->
+    <!-- VISTA TREE DEL MODELO COCHE -->
+    <!-- Requisito: Vista tree -->
+    <!-- ============================================ -->
     <record id="view_coche_tree" model="ir.ui.view">
         <field name="name">coche.tree</field>
         <field name="model">concesionario.coche</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="image" widget="image" class="oe_avatar"/>
-                <field name="name"/>
-                <field name="marca_id"/>
-                <field name="precio"/>
-                <field name="propietario_id"/>
-                <field name="estado"/>
+                <!-- Campos -->
+                <field name="image" widget="image" class="oe_avatar"/> <!-- Imagen (campo Image) -->
+                <field name="name"/>                                    <!-- Nombre del coche -->
+                <field name="marca_id"/>                                <!-- Relación Many2one con Marca -->
+                <field name="precio"/>                                  <!-- Precio -->
+                <field name="propietario_id"/>                          <!-- Relación Many2one con Cliente -->
+                <field name="estado"/>                                   <!-- Campo computado estado -->
             </tree>
         </field>
     </record>
 
-    <!-- FORM -->
+    <!-- ============================================ -->
+    <!-- VISTA FORM DEL MODELO COCHE -->
+    <!-- Requisito: Vista form, campos relacionales -->
+    <!-- ============================================ -->
     <record id="view_coche_form" model="ir.ui.view">
         <field name="name">coche.form</field>
         <field name="model">concesionario.coche</field>
@@ -25,20 +32,23 @@
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <field name="marca_id"/>
+                        <field name="marca_id"/>                               <!-- Many2one -->
                         <field name="precio"/>
                         <field name="fecha_fabricacion"/>
-                        <field name="propietario_id"/>
-                        <field name="cliente_ids" widget="many2many_tags"/>
-                        <field name="image" widget="image" class="oe_avatar"/>
-                        <field name="estado" readonly="1"/>
+                        <field name="propietario_id"/>                         <!-- Many2one -->
+                        <field name="cliente_ids" widget="many2many_tags"/>    <!-- Many2many -->
+                        <field name="image" widget="image" class="oe_avatar"/> <!-- Imagen -->
+                        <field name="estado" readonly="1"/>                    <!-- Campo computado -->
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- KANBAN -->
+    <!-- ============================================ -->
+    <!-- VISTA KANBAN DEL MODELO COCHE -->
+    <!-- Requisito: Vista Kanban mínima para un modelo -->
+    <!-- ============================================ -->
     <record id="view_coche_kanban" model="ir.ui.view">
         <field name="name">coche.kanban</field>
         <field name="model">concesionario.coche</field>
@@ -47,8 +57,11 @@
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_card">
-                            <t t-if="record.image.raw_value">
+                            <t t-if="record.image">
                                 <img t-att-src="'data:image/png;base64,%s' % record.image" class="oe_kanban_image"/>
+                            </t>
+                            <t t-else="">
+                                <img src="https://via.placeholder.com/150x100?text=Sin+imagen" class="oe_kanban_image"/>
                             </t>
                             <strong><field name="name"/></strong>
                             <div><field name="marca_id"/></div>
@@ -60,7 +73,10 @@
         </field>
     </record>
 
-    <!-- SEARCH -->
+    <!-- ============================================ -->
+    <!-- VISTA SEARCH DEL MODELO COCHE -->
+    <!-- Requisito: búsqueda y filtros -->
+    <!-- ============================================ -->
     <record id="view_coche_search" model="ir.ui.view">
         <field name="name">coche.search</field>
         <field name="model">concesionario.coche</field>
@@ -73,14 +89,20 @@
         </field>
     </record>
 
-    <!-- ACTION -->
+    <!-- ============================================ -->
+    <!-- ACTION PARA ABRIR VISTA DE COCHES -->
+    <!-- Requisito: abrir vistas tree, form y kanban -->
+    <!-- ============================================ -->
     <record id="action_coche" model="ir.actions.act_window">
         <field name="name">Coches</field>
         <field name="res_model">concesionario.coche</field>
         <field name="view_mode">tree,form,kanban</field>
     </record>
 
-    <!-- MENUS -->
+    <!-- ============================================ -->
+    <!-- MENÚS -->
+    <!-- Requisito: navegación en menú principal -->
+    <!-- ============================================ -->
     <menuitem id="menu_concesionario" name="Concesionario"/>
     <menuitem id="menu_coche" name="Coches" parent="menu_concesionario" action="action_coche"/>
     <menuitem id="menu_cliente" name="Clientes" parent="menu_concesionario" action="action_cliente"/>

@@ -1,16 +1,22 @@
 <odoo>
-    <!-- TREE -->
+    <!-- ============================================ -->
+    <!-- VISTA TREE DEL MODELO VENDEDOR -->
+    <!-- Requisito: Vista tree -->
+    <!-- ============================================ -->
     <record id="view_vendedor_tree" model="ir.ui.view">
         <field name="name">vendedor.tree</field>
         <field name="model">concesionario.vendedor</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name"/>
+                <field name="name"/> <!-- Nombre del vendedor -->
             </tree>
         </field>
     </record>
 
-    <!-- FORM -->
+    <!-- ============================================ -->
+    <!-- VISTA FORM DEL MODELO VENDEDOR -->
+    <!-- Requisito: Vista form, relación One2many con ventas -->
+    <!-- ============================================ -->
     <record id="view_vendedor_form" model="ir.ui.view">
         <field name="name">vendedor.form</field>
         <field name="model">concesionario.vendedor</field>
@@ -18,32 +24,41 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="venta_ids"/>
+                        <field name="name"/>        <!-- Nombre del vendedor -->
+                        <field name="venta_ids"/>   <!-- One2many: todas las ventas realizadas por este vendedor -->
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- SEARCH -->
+    <!-- ============================================ -->
+    <!-- VISTA SEARCH DEL MODELO VENDEDOR -->
+    <!-- Requisito: Búsqueda de registros -->
+    <!-- ============================================ -->
     <record id="view_vendedor_search" model="ir.ui.view">
         <field name="name">vendedor.search</field>
         <field name="model">concesionario.vendedor</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name"/>
+                <field name="name"/>  <!-- Permite buscar por nombre del vendedor -->
             </search>
         </field>
     </record>
 
-    <!-- ACTION -->
+    <!-- ============================================ -->
+    <!-- ACTION PARA ABRIR VISTA DE VENDEDORES -->
+    <!-- Requisito: Abrir vistas tree y form -->
+    <!-- ============================================ -->
     <record id="action_vendedor" model="ir.actions.act_window">
         <field name="name">Vendedores</field>
         <field name="res_model">concesionario.vendedor</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- MENU -->
+    <!-- ============================================ -->
+    <!-- MENÚ PARA EL MODELO VENDEDOR -->
+    <!-- Requisito: Navegación en el menú principal -->
+    <!-- ============================================ -->
     <menuitem id="menu_vendedor" name="Vendedores" parent="menu_concesionario" action="action_vendedor"/>
 </odoo>

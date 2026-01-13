@@ -1,0 +1,23 @@
+# Practica 11 de ODOO 17
+
+----
+
+## Rquisitos
+
+```
+*  5 tablas o modelos como mínimo 
+*  Relaciones: One2many, Many2one, Many2many 
+*  Vistas tree y form para todos los modelos 
+*  Vista Kanban para un modelo como mínimo 
+*  Campos computados avanzados (almacenados en la BBDD) 
+*  Decoradores: @api.depends y @api.constraints 
+*  Campos relacionales computados 
+*  Campos con valores por defecto (usar funciones lambda) 
+*  ORM: env y métodos: search(), create()… 
+*  Herencia en algún modelo 
+*  API-REST que permita realizar operaciones CRUD sobre un modelo usando llamadas HTTP 
+*  Bootstrap en alguna vista  
+*  Manejo de errores 
+```
+
+----

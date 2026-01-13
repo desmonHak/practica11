@@ -1,10 +1,67 @@
 <odoo>
     <template id="coche_detalle_template" name="Detalle del Coche">
         <t t-call="web.layout">
+            <!--
+            Plantilla QWeb: coche_detalle_template
+
+            Descripción general:
+            - Muestra el detalle completo de un coche incluyendo imagen, precio, estado,
+              antigüedad, marca y propietario.
+            - Incluye diseño estético usando Bootstrap 5 y Bootstrap Icons.
+
+            Conceptos Odoo/QWeb usados:
+
+            1. t-call="web.layout"
+               - Extiende la plantilla base de Odoo para mantener encabezado, footer y estilos comunes.
+
+            2. t-if / t-else
+               - Condicionales de QWeb para mostrar la imagen del coche si existe,
+                 o un placeholder si no hay imagen.
+
+            3. t-att-src
+               - Asigna dinámicamente el atributo 'src' del <img> con la imagen del coche
+                 codificada en Base64.
+
+            4. t-esc
+               - Escapa el contenido para mostrar datos de manera segura:
+                 - coche.name, coche.precio, coche.estado, coche.antiguedad, coche.marca_id.name,
+                   coche.propietario_id.name
+
+            5. t-att-class
+               - Permite definir dinámicamente clases CSS según condición
+                 - Por ejemplo, cambia el color del badge según si el coche es 'nuevo' o 'usado'.
+
+            6. Bootstrap 5
+               - Uso de contenedores (container), filas (row), columnas (col-*), tarjetas (card),
+                 badges, botones (btn) y utilidades de espaciado y sombra (shadow, p-3, my-5, me-2).
+               - Hace que la vista sea responsive y visualmente atractiva.
+
+            7. Bootstrap Icons
+               - Se incluyen para mostrar iconos en botones:
+                 - bi-arrow-left-circle para "Volver al listado"
+                 - bi-cart-plus para "Comprar"
+
+            8. Diseño responsive
+               - Imagen y texto distribuidos en columnas col-lg-6 para escritorio
+                 y flex-column para centrar verticalmente el contenido en pantallas grandes.
+
+            9. Manejo de datos relacionales
+               - coche.marca_id.name: Many2one hacia Marca
+               - coche.propietario_id.name: Many2one hacia Cliente
+               - Se usa condición para mostrar 'Sin propietario' si no tiene propietario.
+
+            Requisitos cumplidos:
+
+            * Bootstrap en la vista: Sí, diseño responsive y tarjetas con sombra
+            * Manejo de relaciones Many2one: coche.marca_id y coche.propietario_id
+            * Manejo de datos dinámicos con QWeb: t-esc, t-att-src, t-att-class
+            * Condiciones dinámicas: t-if / t-else
+            * Estética: badges de estado, espaciado, sombras, botones con iconos
+            -->
             
+            <!-- Incluir Bootstrap CSS y JS -->
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 
             <!-- Incluir Bootstrap Icons en el head -->
             <t t-set="head" t-value="head or ''">
@@ -56,7 +113,6 @@
                     </div>
                 </div>
             </div>
-            
         </t>
     </template>
 </odoo>

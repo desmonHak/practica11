@@ -1,18 +1,25 @@
 <odoo>
-    <!-- TREE -->
+    <!-- ============================================ -->
+    <!-- VISTA TREE DEL MODELO CLIENTE -->
+    <!-- Requisito: Vistas tree y form para todos los modelos -->
+    <!-- ============================================ -->
     <record id="view_cliente_tree" model="ir.ui.view">
         <field name="name">cliente.tree</field>
         <field name="model">concesionario.cliente</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name" />
-                <field name="email" />
-                <field name="coche_favorito_ids" />
+                <!-- Campos mostrados en la lista -->
+                <field name="name" />                   <!-- Nombre del cliente -->
+                <field name="email" />                  <!-- Email del cliente -->
+                <field name="coche_favorito_ids" />    <!-- Relación Many2many con coches favoritos -->
             </tree>
         </field>
     </record>
 
-    <!-- FORM -->
+    <!-- ============================================ -->
+    <!-- VISTA FORM DEL MODELO CLIENTE -->
+    <!-- Requisito: Vistas tree y form para todos los modelos -->
+    <!-- ============================================ -->
     <record id="view_cliente_form" model="ir.ui.view">
         <field name="name">cliente.form</field>
         <field name="model">concesionario.cliente</field>
@@ -20,34 +27,44 @@
             <form>
                 <sheet>
                     <group>
+                        <!-- Campos editables -->
                         <field name="name" />
                         <field name="email" />
-                        <field name="coche_favorito_ids" widget="many2many_tags" />
+                        <field name="coche_favorito_ids" widget="many2many_tags" /> <!-- Many2many con widget -->
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- SEARCH -->
+    <!-- ============================================ -->
+    <!-- VISTA SEARCH DEL MODELO CLIENTE -->
+    <!-- Requisito: Búsqueda y filtros básicos -->
+    <!-- ============================================ -->
     <record id="view_cliente_search" model="ir.ui.view">
         <field name="name">cliente.search</field>
         <field name="model">concesionario.cliente</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name" />
-                <field name="email" />
+                <field name="name" />  <!-- Buscar por nombre -->
+                <field name="email" /> <!-- Buscar por email -->
             </search>
         </field>
     </record>
 
-    <!-- ACTION -->
+    <!-- ============================================ -->
+    <!-- ACTION PARA ABRIR LA VISTA DE CLIENTES -->
+    <!-- Requisito: Acciones de ventana -->
+    <!-- ============================================ -->
     <record id="action_cliente" model="ir.actions.act_window">
         <field name="name">Clientes</field>
         <field name="res_model">concesionario.cliente</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form</field> <!-- Permite abrir en Tree y Form -->
     </record>
 
-    <!-- MENU -->
+    <!-- ============================================ -->
+    <!-- MENU PARA ACCEDER A CLIENTES -->
+    <!-- Requisito: Navegación en el menú principal -->
+    <!-- ============================================ -->
     <menuitem id="menu_cliente" name="Clientes" parent="menu_concesionario" action="action_cliente" />
 </odoo>

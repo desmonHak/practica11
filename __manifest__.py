@@ -8,8 +8,8 @@
     "data": [
         "security/ir.model.access.csv",
         'views/views_marca.xml',
-        'views/views_cliente.xml',
         'views/views_coche.xml',
+        'views/views_cliente.xml',
         'views/views_vendedor.xml',
         'views/views_venta.xml',
         "views/templates.xml",
