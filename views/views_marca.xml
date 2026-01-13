@@ -60,5 +60,6 @@
     <!-- MENÚ PARA EL MODELO MARCA -->
     <!-- Requisito: Navegación en el menú principal -->
     <!-- ============================================ -->
+     <menuitem id="menu_concesionario" name="Concesionario"/>
     <menuitem id="menu_marca" name="Marcas" parent="menu_concesionario" action="action_marca"/>
 </odoo>

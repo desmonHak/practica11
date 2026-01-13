@@ -67,4 +67,5 @@
     <!-- Requisito: Navegación en el menú principal -->
     <!-- ============================================ -->
     <menuitem id="menu_cliente" name="Clientes" parent="menu_concesionario" action="action_cliente" />
+    
 </odoo>
