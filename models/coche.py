@@ -19,7 +19,23 @@ class ConcesionarioCoche(models.Model):
 
     cliente_ids = fields.Many2many(
         "concesionario.cliente",
+        "cliente_coche_favorito_rel",  # misma tabla intermedia
+        "coche_id",                     # columna que apunta a coche
+        "cliente_id",                   # columna que apunta a cliente
         string="Clientes interesados"
+    )
+    
+    propietario_id = fields.Many2one(
+        "concesionario.cliente",
+        string="Propietario",
+        ondelete="set null"
+    )
+    
+    # CAMPO DE IMAGEN
+    image = fields.Image(
+        string="Imagen del Coche",  # Nombre visible en la vista
+        max_width=800,               # ancho máximo de la imagen
+        max_height=600               # alto máximo
     )
 
     antiguedad = fields.Integer(

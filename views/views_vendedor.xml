@@ -1,0 +1,49 @@
+<odoo>
+    <!-- TREE -->
+    <record id="view_vendedor_tree" model="ir.ui.view">
+        <field name="name">vendedor.tree</field>
+        <field name="model">concesionario.vendedor</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- FORM -->
+    <record id="view_vendedor_form" model="ir.ui.view">
+        <field name="name">vendedor.form</field>
+        <field name="model">concesionario.vendedor</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="venta_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- SEARCH -->
+    <record id="view_vendedor_search" model="ir.ui.view">
+        <field name="name">vendedor.search</field>
+        <field name="model">concesionario.vendedor</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- ACTION -->
+    <record id="action_vendedor" model="ir.actions.act_window">
+        <field name="name">Vendedores</field>
+        <field name="res_model">concesionario.vendedor</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- MENU -->
+    <menuitem id="menu_vendedor" name="Vendedores" parent="menu_concesionario" action="action_vendedor"/>
+</odoo>

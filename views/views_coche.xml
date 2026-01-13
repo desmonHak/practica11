@@ -6,10 +6,12 @@
         <field name="model">concesionario.coche</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name" />
-                <field name="marca_id" />
-                <field name="precio" />
-                <field name="estado" />
+                <field name="image" widget="image" class="oe_avatar"/>
+                <field name="name"/>
+                <field name="marca_id"/>
+                <field name="precio"/>
+                <field name="propietario_id"/>
+                <field name="estado"/>
             </tree>
         </field>
     </record>
@@ -22,11 +24,14 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="name" />
-                        <field name="marca_id" />
-                        <field name="precio" />
-                        <field name="fecha_fabricacion" />
-                        <field name="estado" readonly="1" />
+                        <field name="name"/>
+                        <field name="marca_id"/>
+                        <field name="precio"/>
+                        <field name="fecha_fabricacion"/>
+                        <field name="propietario_id"/>
+                        <field name="cliente_ids" widget="many2many_tags"/>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <field name="estado" readonly="1"/>
                     </group>
                 </sheet>
             </form>
@@ -42,13 +47,12 @@
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_card">
-                            <strong>
-                                <field name="name" />
-                            </strong>
-                            <div>
-                                <field name="marca_id" />
-                            </div>
-                            <div><field name="precio" /> €</div>
+                            <t t-if="record.image.raw_value">
+                                <img t-att-src="'data:image/png;base64,%s' % record.image" class="oe_kanban_image"/>
+                            </t>
+                            <strong><field name="name"/></strong>
+                            <div><field name="marca_id"/></div>
+                            <div><field name="precio"/> €</div>
                         </div>
                     </t>
                 </templates>
@@ -56,25 +60,29 @@
         </field>
     </record>
 
+    <!-- SEARCH -->
     <record id="view_coche_search" model="ir.ui.view">
         <field name="name">coche.search</field>
         <field name="model">concesionario.coche</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name" />
-                <field name="marca_id" />
-                <filter string="Available" name="available" domain="[('estado','=','Disponible')]" />
+                <field name="name"/>
+                <field name="marca_id"/>
+                <filter string="Disponible" name="available" domain="[('estado','=','nuevo')]"/>
             </search>
         </field>
     </record>
 
+    <!-- ACTION -->
     <record id="action_coche" model="ir.actions.act_window">
         <field name="name">Coches</field>
         <field name="res_model">concesionario.coche</field>
         <field name="view_mode">tree,form,kanban</field>
     </record>
 
-    <menuitem id="menu_coche" name="Coches" parent="menu_concesionario" action="action_coche" />
-
+    <!-- MENUS -->
+    <menuitem id="menu_concesionario" name="Concesionario"/>
+    <menuitem id="menu_coche" name="Coches" parent="menu_concesionario" action="action_coche"/>
+    <menuitem id="menu_cliente" name="Clientes" parent="menu_concesionario" action="action_cliente"/>
 
 </odoo>

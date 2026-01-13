@@ -1,0 +1,49 @@
+<odoo>
+    <!-- TREE -->
+    <record id="view_marca_tree" model="ir.ui.view">
+        <field name="name">marca.tree</field>
+        <field name="model">concesionario.marca</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- FORM -->
+    <record id="view_marca_form" model="ir.ui.view">
+        <field name="name">marca.form</field>
+        <field name="model">concesionario.marca</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="coche_ids" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- SEARCH -->
+    <record id="view_marca_search" model="ir.ui.view">
+        <field name="name">marca.search</field>
+        <field name="model">concesionario.marca</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+
+    <!-- ACTION -->
+    <record id="action_marca" model="ir.actions.act_window">
+        <field name="name">Marcas</field>
+        <field name="res_model">concesionario.marca</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- MENU -->
+    <menuitem id="menu_marca" name="Marcas" parent="menu_concesionario" action="action_marca" />
+</odoo>

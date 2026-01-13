@@ -9,5 +9,8 @@ class ConcesionarioCliente(models.Model):
 
     coche_favorito_ids = fields.Many2many(
         "concesionario.coche",
+        "cliente_coche_favorito_rel",  # nombre de la tabla intermedia
+        "cliente_id",                  # columna que apunta a cliente
+        "coche_id",                    # columna que apunta a coche
         string="Coches favoritos"
     )

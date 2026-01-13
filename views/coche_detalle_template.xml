@@ -1,0 +1,62 @@
+<odoo>
+    <template id="coche_detalle_template" name="Detalle del Coche">
+        <t t-call="web.layout">
+            
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+            <!-- Incluir Bootstrap Icons en el head -->
+            <t t-set="head" t-value="head or ''">
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"/>
+            </t>
+            
+            <div class="container my-5">
+                <div class="card shadow-lg rounded-4 p-3">
+                    <div class="row g-3">
+                        <!-- Imagen del coche -->
+                        <div class="col-lg-6 text-center">
+                            <t t-if="coche.image">
+                                <img t-att-src="'data:image/png;base64,%s' % (coche.image.decode() if isinstance(coche.image, bytes) else coche.image)"
+                                     class="img-fluid rounded-3 shadow-sm" style="max-height:400px; object-fit:cover;" />
+                            </t>
+                            <t t-else="">
+                                <img src="https://via.placeholder.com/800x400?text=Sin+imagen"
+                                     class="img-fluid rounded-3 shadow-sm" style="max-height:400px; object-fit:cover;" />
+                            </t>
+                        </div>
+
+                        <!-- Información del coche -->
+                        <div class="col-lg-6 d-flex flex-column justify-content-center">
+                            <h2 class="card-title mb-3"><t t-esc="coche.name"/></h2>
+                            <p class="card-text mb-2"><strong>Precio:</strong> <span class="text-success fs-5"><t t-esc="coche.precio"/> €</span></p>
+                            <p class="card-text mb-2"><strong>Estado:</strong> 
+                                <span t-att-class="'badge ' + ('bg-success' if coche.estado=='nuevo' else 'bg-warning text-dark')">
+                                    <t t-esc="coche.estado.capitalize()"/>
+                                </span>
+                            </p>
+                            <p class="card-text mb-2"><strong>Antigüedad:</strong> 
+                                <span class="badge bg-info text-dark"><t t-esc="coche.antiguedad"/> años</span>
+                            </p>
+                            <p class="card-text mb-2"><strong>Marca:</strong> <t t-esc="coche.marca_id.name"/></p>
+                            <p class="card-text mb-2"><strong>Propietario:</strong> 
+                                <t t-esc="coche.propietario_id.name if coche.propietario_id else 'Sin propietario'"/>
+                            </p>
+
+                            <!-- Botones -->
+                            <div class="mt-4">
+                                <a href="/concesionario/boot" class="btn btn-primary me-2">
+                                    <i class="bi bi-arrow-left-circle"></i> Volver al listado
+                                </a>
+                                <a href="#" class="btn btn-success">
+                                    <i class="bi bi-cart-plus"></i> Comprar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </t>
+    </template>
+</odoo>
