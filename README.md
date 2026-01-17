@@ -1,4 +1,9 @@
-# Practica 11 de ODOO 17
+# Practica 11 de ODOO 17 (Concesionario)
+
+----
+
+Este es un pequeño modulo para ODOO 17 que permite gestionar un concesionario y contiene una API.
+
 
 ----
 
