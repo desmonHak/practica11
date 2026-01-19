@@ -26,3 +26,9 @@ Este es un pequeño modulo para ODOO 17 que permite gestionar un concesionario y
 ```
 
 ----
+
+## Descarge la memoria
+
+[memoria López_T_David_Practica11.pdf](https://github.com/desmonHak/practica11/blob/master/L%C3%B3pez_T_David_Practica11.pdf)
+
+----
